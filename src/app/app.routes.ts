@@ -1,3 +1,18 @@
-import { Routes } from '@angular/router';
+import { Routes } from '@angular/router'
+import { AuthGuard } from './shared/auth-guard.guard'
 
-export const routes: Routes = [];
+const backOfficeModule = () =>
+  import('./back-office/back-office.module').then(
+    ({ BackOfficeModule }) => BackOfficeModule,
+  )
+const signatoryModule = () =>
+  import('./signatory/signatory.module').then(
+    ({ SignatoryModule }) => SignatoryModule,
+  )
+
+export const routes: Routes = [
+  { path: '', redirectTo: '/insurer', pathMatch: 'full' },
+  { path: 'insurer', loadChildren: signatoryModule },
+  { path: 'back-office', loadChildren: backOfficeModule },
+  { path: '**', redirectTo: '/insurer' },
+]
