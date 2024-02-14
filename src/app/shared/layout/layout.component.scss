@@ -1,0 +1,58 @@
+@import '../../../styles.scss';
+
+.layout-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.topbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 50px;
+  margin: 0 0px $spacing-lg 0px;
+  padding: $spacing-lg calc($spacing-xxl * 2) 4px calc($spacing-xxl * 2);
+}
+
+.topbar img {
+  height: 100%;
+}
+
+.background-effects {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.eclipse {
+  position: absolute;
+
+  width: 634px;
+  height: 634px;
+  border-radius: 50%;
+
+  background: scale-color($color: $primary-color, $alpha: -50%);
+  filter: blur(300px);
+}
+
+.eclipse.eclipse-1 {
+  top: -30vh;
+  left: -20vw;
+}
+.eclipse.eclipse-2 {
+  top: 60vh;
+  left: 40vw;
+}
+
+.court-logo {
+  position: absolute;
+  top: 70vh;
+  left: 80vw;
+}
