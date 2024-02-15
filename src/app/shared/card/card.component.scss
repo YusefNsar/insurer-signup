@@ -1,0 +1,41 @@
+@import '../../../styles.scss';
+
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.29);
+  mix-blend-mode: normal;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  margin: 0 auto;
+  max-width: 1012px;
+}
+
+.card-header {
+  position: absolute;
+  width: 405px;
+  height: 57px;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+
+  background: #fafafa;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #0e2d4a;
+}
+
+.card-content {
+  font-family: 'Roboto', sans-serif;
+  color: $primary-color;
+}
