@@ -21,6 +21,7 @@ $spacing-sm: 8px;
 $spacing-md: 16px;
 $spacing-lg: 24px;
 $spacing-xl: 32px;
+$spacing-xxl: 40px;
 
 // Border Radius
 $border-radius: 4px;
@@ -44,6 +45,7 @@ $border-radius: 4px;
 body {
   font-family: $font-family;
   font-size: $font-size;
+  margin: 0;
 }
 
 h1,
