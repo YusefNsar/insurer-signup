@@ -23,7 +23,13 @@
 }
 
 .content {
-  padding: 100px 15%;
+  padding: 100px 10%;
+}
+
+@media screen and (max-width: 1200px) {
+  .content {
+    padding: 70px 6%;
+  }
 }
 
 .background-effects {
