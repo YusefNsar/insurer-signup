@@ -1,51 +1,52 @@
+@import '../../../../styles.scss';
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Kalyani', sans-serif;
+
 }
 .formcontainer {
     width: 100%;
-    display: flex;
+    display:grid;
     justify-content: center;
     align-items: center;
 }
-.header-logo1 {
-    position:absolute;
-    top:2%;
-    left:2%;
-}
-.logo {
-    position: absolute;
-    z-index: -1; 
-    top:2%;
-    right:4%;
-    margin-top: 5%;
-}
-.form {
-    width: 75%;
-    margin-top: 20%;
+
+.insurance-form {
+    width: 100%;
+    margin-top: 15%;
     max-width: 800px;
     padding: 50px;
+    background-color: white;
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2-column grid */
-    gap: 25px; 
+    gap: 25px;
 }
-.form-header {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    text-align: center;
-    grid-column: span 2; 
+.signatory-form {
+    width: 100%;
+    margin-top: 5%;
+    max-width: 800px;
+    padding: 50px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2-column grid */
+    gap: 25px;
 }
+
 .form-group {
     margin-bottom: 20px;
-    grid-column: span 1;     
+    grid-column: span 1;
 }
 .form-group label {
     font-weight: bold;
     margin:2px;
+    font-size: 15px;
+    white-space: nowrap;
     flex: 1;
 }
 .form-group input {
@@ -62,8 +63,7 @@ body {
     width: 3%;
 }
 .button-container {
-    grid-column: span 2;
-    text-align: right; 
+    text-align: center;
 }
 .form-group button {
     padding: 15px 20px;
@@ -74,5 +74,124 @@ body {
     cursor: pointer;
     font-size: 16px;
     width: 50%;
-  
 }
+.upload-container {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+.upload-section {
+    width: 100%;
+    max-width: 800px;
+    padding: 50px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.upload-header {
+    
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: -45px;
+    text-align: center;
+    grid-column: span 2;
+}
+.upload-popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .upload-popup-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .upload-popup-header {
+    border: 1px dashed #ccc;
+    padding: 2px 16px;
+    background-color: #f7f7f7;
+    color: black;
+    text-align: center;
+  }
+
+  .close {
+    float: right;
+    cursor: pointer;
+  }
+
+  .upload-popup-body {
+    padding: 2px 16px;
+    text-align: center;
+  }
+
+  #fileList {
+    margin-top: 10px;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  .error-message {
+    color: #a94442;
+    font-size:small ;
+    margin:3px;
+  }
+
+  a{
+    color: black;
+  }
+
+  .document-table {
+    display: inline-block;
+    width: calc(33.33% - 20px);
+    margin: 10px;
+   
+    background-color: #dbdce0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .table-header {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .table-body {
+    padding: 10px;
+    
+  }
+
+  .document-table .new-document-button {
+    text-align: right;
+    padding: 10px;
+    color: white;
+    background-color: #0e2d4a;
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    transition: background- 0.3s;
+  }
+
+  .document-table .new-document-button:hover {
+    background-color: #45a049;
+  }
+
+  #fileInput {
+    display: none;
+  }

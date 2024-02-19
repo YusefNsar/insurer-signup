@@ -7,61 +7,192 @@
 </head>
 
 <body>
-    
+
     <div class="formcontainer">
         <!-- <div class="header-logo">
             <img src="../../../../assets/header-logo1.png" class="header-logo1">
         </div> -->
-        <!-- <div class="logo">
+        <div class="logo">
             <img src="../../../../assets/RasAlkhaimah-courts.png" class="logo">
-        </div> -->
-        <form class="form">
+        </div>
+        <form class="insurance-form" [formGroup]="myform">
             <div class="form-header">Insurance Company Form</div>
             <div class="form-group">
-                <label for="cname">Company Name</label>
-                <input type="text" id="cname" name="cname" placeholder="Enter your company's name">
+                <label for="cname">Company Name *</label>
+                <input type="text" id="cname" name="cname" placeholder="Enter your company's name" formControlName="cname" >
+                <div *ngIf="myform.get('cname')?.invalid && (myform.get('cname')?.dirty || myform.get('cname')?.touched)">
+                  <span class="error-message" *ngIf="myform.get('cname')?.errors?.['required']">Company Name is required.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="wNumber">Work Number</label>
+              <input type="number" id="wNumber" name="wNumber" placeholder="Enter your work number" formControlName="wNumber">
+              <div *ngIf="myform.get('wNumber')?.invalid && (myform.get('wNumber')?.dirty || myform.get('wNumber')?.touched)">
+                  <span class="error-message" *ngIf="myform.get('wNumber')?.errors?.['pattern']">Work Number must be numeric.</span>
+              </div>
             </div>
             <div class="form-group">
-                <label for="address">Registered Address</label>
-                <input type="text" id="address" name="address" placeholder="Enter your address">
-            </div>
-            <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="text" id="Email" name="Email" placeholder="Enter your email">
+              <label for="Email">Email *</label>
+              <input type="email" id="Email" name="Email" placeholder="Enter your email" formControlName="Email">
+              <div *ngIf="myform.get('Email')?.invalid && (myform.get('Email')?.dirty || myform.get('Email')?.touched)">
+                  <span class="error-message" *ngIf="myform.get('Email')?.errors?.['required']">Email is required.</span>
+                  <span class="error-message" *ngIf="myform.get('Email')?.errors?.['email']">Invalid email format.</span>
+              </div>
             </div>
             <div class="form-group">
                 <label for="website">Official Website</label>
                 <input type="text" id="website" name="website" placeholder="Enter official website URL">
             </div>
             <div class="form-group">
-                <label for="cbuae">CBUAE Registration Number & Expiry Date</label>
-                <input type="text" id="cbuae" name="cbuae" placeholder="Enter CBUAE Registration Number and Expiry Date">
+                <label for="address">Registered Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter the registered address of the company">
             </div>
             <div class="form-group">
-                <label for="commercial-license">Commercial License Number & Expiry Date</label>
-                <input type="text" id="commercial-license" name="commercial-license" placeholder="Enter Commercial License Number and Expiry Date">
+                <label for="cbuae">CBUAE Registration Number & Expiry Date *</label>
+                <input type="text" id="cbuae" name="cbuae" placeholder="Enter CBUAE Registration Number & Expiry Date" formControlName="cbuae">
+                <div *ngIf="myform.get('cbuae')?.invalid && (myform.get('cbuae')?.dirty || myform.get('cbuae')?.touched)">
+                    <span class="error-message" *ngIf="myform.get('cbuae')?.errors?.['required']">CBUAE Registration Number & Expiry Date is required.</span>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="Number">Phone Number</label>
+              <input type="number" id="Number" name="Number" placeholder="Enter your phone number" formControlName="Number">
+              <div *ngIf="myform.get('Number')?.invalid && (myform.get('Number')?.dirty || myform.get('Number')?.touched)">
+                  <span class="error-message" *ngIf="myform.get('Number')?.errors?.['pattern']">Phone Number must be numeric.</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="commercial-license">Commercial License Number & Expiry Date *</label>
+                <input type="text" id="commercial-license" name="commercial-license" placeholder="Enter Commercial License Number and Expiry Date" formControlName="commercialLicense">
+                <div *ngIf="myform.get('commercialLicense')?.invalid && (myform.get('commercialLicense')?.dirty || myform.get('commercialLicense')?.touched)">
+                    <span class="error-message" *ngIf="myform.get('commercialLicense')?.errors?.['required']">Commercial License Number & Expiry Date is required.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="representative">Name of the authorized representative of the company</label>
+                <input type="text" id="representative" name="representative" placeholder="Enter the name of the authorized representative ">
+            </div>
+
+        </form>
+
+<!-- Signatory profile form -->
+
+        <form class="signatory-form" [formGroup]="signatoryform">
+            <div class="form-header">Signatory Profile</div>
+            <div class="form-group">
+                <label for="companyname">Company Name *</label>
+                <input type="text" id="companyname" name="companyname" placeholder="Enter your company's name" formControlName="companyname" >
+                <div *ngIf="signatoryform.get('companyname')?.invalid && (signatoryform.get('companyname')?.dirty || signatoryform.get('companyname')?.touched)">
+                  <span class="error-message" *ngIf="signatoryform.get('companyname')?.errors?.['required']">Company Name is required.</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="mNumber">Mobile Number *</label>
+                <input type="number" id="mNumber" name="mNumber" placeholder="Enter your mobile number" formControlName="mNumber">
+                <div *ngIf="signatoryform.get('mNumber')?.invalid && (signatoryform.get('mNumber')?.dirty || signatoryform.get('mNumber')?.touched)">
+                    <span class="error-message" *ngIf="signatoryform.get('mNumber')?.errors?.['pattern']">Phone Number must be numeric.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Location">Location</label>
+                <input type="text" id="Location" name="Location" placeholder="Enter your Location">
+            </div>
+            <div class="form-group">
+                <label for="address">Registered Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter the registered address of the company">
             </div>
             <div class="form-group">
                 <label for="Number">Phone Number</label>
-                <input type="text" id="Number" name="Number" placeholder="Enter your phone number">
+                <input type="number" id="Number" name="Number" placeholder="Enter your phone number">
             </div>
             <div class="form-group">
-                <label for="commercial-license">Commercial License Number & Expiry Date</label>
-                <input type="text" id="commercial-license" name="commercial-license" placeholder="Enter Commercial License Number and Expiry Date">
+                <label for="representative">Name of the authorized representative of the company</label>
+                <input type="text" id="representative" name="representative" placeholder="Enter the name of the authorized representative ">
             </div>
-            <div class="form-group">
-                <label for="commercial-license">Commercial License Number & Expiry Date</label>
-                <input type="text" id="commercial-license" name="commercial-license" placeholder="Enter Commercial License Number and Expiry Date">
+
+        </form>
+        <div class="upload-container">
+            <div class="upload-section">
+              <div class="upload-header">Upload Documents</div>
+              <div class="document-table">
+                <div class="table-header">Company License</div>
+                <div class="table-body">
+                  <div *ngFor="let file of uploadedFiles" class="document-item">
+                    <a [href]="file.base64" download="{{ file.name }}">
+                      <img src="../../../../assets/pdf-icon.png" alt="PDF Icon" class="pdf-icon">
+                    </a>
+                    <span class="document-name">{{ file.name }}</span>
+                  </div>
+                </div>
+                <button class="new-document-button" (click)="showUploadPopup()">New Document</button>
+              </div>
+
+              <!-- Document Table 2 -->
+              <div class="document-table">
+                <div class="table-header">Signatory Profile</div>
+                <div class="table-body">
+                    <div *ngFor="let file of uploadedFiles" class="document-item">
+                        <a [href]="file.base64" download="{{ file.name }}">
+                          <img src="../../../../assets/pdf-icon.png" alt="PDF Icon" class="pdf-icon">
+                        </a>
+                        <span class="document-name">{{ file.name }}</span>
+                      </div>
+                </div>
+                <button class="new-document-button" (click)="showUploadPopup()">New Document</button>
+              </div>
+
+              <!-- Document Table 3 -->
+              <div class="document-table">
+                <div class="table-header">Other documents</div>
+                <div class="table-body">
+                  <!-- Table body content goes here -->
+                </div>
+                <button class="new-document-button">New Document</button>
+              </div>
+              <div *ngIf="isUploadPopupVisible" class="upload-popup">
+                <div class="upload-popup-content">
+                  <div class="upload-popup-header"
+                    (dragover)="onDragOver($event)"
+                    (dragleave)="onDragLeave($event)"
+                    (drop)="onDrop($event)">
+                    <div type="file" (change)="handleFileInput($event)" multiple>
+                        <span class="close" (click)="closeUploadPopup()">&times;</span>
+                        <h2>Drag and Drop Files Here</h2>
+                        <input 
+                        id="fileInput"
+                        type="file"
+                        (change)="handleFileInput($event)"
+                        multiple
+                        style="display: none;"
+                      >
+                    
+                    </div>
+                  </div>
+                  <p>Or Click to Browse</p>
+                  <input type="file" (change)="handleFileInput($event)" multiple>
+                    
+                    <div id="fileList">
+                      <ul>
+                        <li *ngFor="let file of uploadedFiles">{{ file.name }}</li>
+                      </ul>
+                    </div>
+                    <button (click)="clearFiles()">Clear</button>
+                  </div>
+                
+              </div>
             </div>
             <div class="form-group checkbox">
                 <input type="checkbox" id="agree" name="agree">
-                <label for="agree">I agree with the Terms and Conditions</label>
+                <a (click)="saveFormData()"routerLink="/insurer/terms-and-conditions">I agree with the Terms and Conditions</a>
             </div>
-            
+
             <div class="form-group button-container">
-                <button type="submit">Submit</button>
+                <button type="submit" [disabled]="myform.invalid" >Submit</button>
             </div>
-        </form>
+        </div>
+
+
     </div>
 </body>
 </html>
