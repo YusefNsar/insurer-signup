@@ -20,7 +20,7 @@ export class ProfileComponent {
     },
   }
 
-  activeItem: string = 'password'
+  activeItem: string = 'profile'
 
   setActiveItem = (newActive: string) => {
     this.activeItem = newActive

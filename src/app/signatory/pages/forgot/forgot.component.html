@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Forgot Password</h1>
+  <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+    <div *ngIf="step === 'send-email'" class="form-group">
+      <label>E-mail / Mobile Number</label>
+      <input formControlName="email" type="email" />
+    </div>
+    <div *ngIf="step === 'reset-password'" class="form-group">
+      <label>OTP</label>
+      <input formControlName="otp" type="text" />
+    </div>
+    <div *ngIf="step === 'reset-password'" class="form-group">
+      <label>New Password</label>
+      <input formControlName="newPassword" type="password" />
+    </div>
+    <div *ngIf="step === 'reset-password'" class="form-group">
+      <label>Confirm Password</label>
+      <input formControlName="confirmPassword" type="password" />
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!form.valid"
+      class="button login-btn"
+      (click)="step === 'send-email' ? sendEmail() : resetPassword()"
+    >
+      {{ step === 'send-email' ? 'Send Email' : 'Reset Password' }}
+    </button>
+  </form>
+</div>
