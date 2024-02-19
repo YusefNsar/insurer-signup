@@ -11,7 +11,14 @@ $warning-color: #ffc107;
 // $secondary-color: #6c757d;#737577 #5F646D2E
 
 // Typography
-$font-family: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap&family=GFS+Didot&display=swap');
+
+@font-face {
+  font-family: 'Malayalam MN';
+  src: url('./assets/fonts/malayalam-mn.ttf') format('ttf');
+}
+
+$font-family: 'Malayalam MN', sans-serif;
 $font-size: 16px;
 $heading-font-weight: bold;
 
@@ -24,7 +31,7 @@ $spacing-xl: 32px;
 $spacing-xxl: 40px;
 
 // Border Radius
-$border-radius: 4px;
+$border-radius: 8px;
 
 // Button Styles
 @mixin button-styles {
@@ -63,6 +70,8 @@ h6 {
   @include button-styles;
   background-color: $primary-color;
   color: #fff;
+  height: 60px;
+  border-radius: 20px;
 }
 
 // Input Styles
@@ -88,4 +97,9 @@ h6 {
   margin-bottom: 30px;
   text-align: center;
   grid-column: span 2;
+}
+@mixin pseudo-element {
+  content: '';
+  display: block;
+  position: absolute;
 }

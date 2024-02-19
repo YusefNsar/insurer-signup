@@ -1,0 +1,64 @@
+@import '../../../../styles.scss';
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20%;
+  row-gap: 5%;
+  padding: 8% 15%;
+  margin-bottom: 30px;
+}
+.grid * {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+  display: flex;
+  align-items: center;
+
+  color: #0e2d4a;
+}
+
+.company-card {
+  display: block;
+  margin-bottom: 50px;
+}
+
+.document-card {
+  display: block;
+  margin-bottom: 50px;
+}
+
+.doc-stack {
+  display: flex;
+  column-gap: 70px;
+  padding: 10vh 7vh;
+}
+
+.buttons-stack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 60px;
+}
+
+.button {
+  width: 179.27px;
+  height: 42.4px;
+}
+
+.accept {
+  background-color: $success-color;
+  &:hover {
+    background-color: lighten($success-color, 10%);
+  }
+}
+
+.reject {
+  background-color: $error-color;
+  &:hover {
+    background-color: lighten($error-color, 10%);
+  }
+}

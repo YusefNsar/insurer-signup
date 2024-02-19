@@ -22,15 +22,23 @@
   height: 100%;
 }
 
+.content {
+  padding: 100px 10%;
+}
+
+@media screen and (max-width: 1200px) {
+  .content {
+    padding: 70px 6%;
+  }
+}
+
 .background-effects {
  
   width: 100%;
   height: 100vh;
   top: 0;
   left: 0;
-  
-}
-.background-effects * {
+  overflow: hidden;
   z-index: -10;
 }
 
