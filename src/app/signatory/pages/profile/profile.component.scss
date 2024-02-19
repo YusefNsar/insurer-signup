@@ -1,0 +1,70 @@
+@import '../../../../styles.scss';
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 100px;
+  padding: 40px 0px;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.29),
+      rgba(255, 255, 255, 0.29)
+    ),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18));
+}
+
+.sidebar {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.03em;
+  text-align: left;
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  margin-bottom: 20px;
+  color: #505050;
+}
+
+.company img {
+  height: 36px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.menu {
+  color: $primary-color;
+}
+
+.menu-item {
+  padding: 20px 60px;
+  margin-bottom: 10px;
+  border-radius: $border-radius;
+  transition: background 0.3s ease;
+  user-select: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.menu-item.active {
+  background-color: $primary-color;
+  color: #fff;
+}
+
+.menu-item:last-of-type {
+  color: $error-color;
+  font-weight: 300;
+  &:active {
+    color: lighten($error-color, 20%);
+  }
+}
+.menu-item:last-of-type.active {
+  background-color: inherit;
+}
