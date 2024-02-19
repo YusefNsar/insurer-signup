@@ -6,6 +6,7 @@ import { SignupComponent } from './pages/signup/signup.component'
 import { RouterModule } from '@angular/router'
 import { AuthGuard } from '../shared/auth-guard.guard'
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component'
+import { ChangePasswordComponent } from './components/change-password/change-password.component'
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ProfileDetailsComponent } from './components/profile-details/profile-de
     ProfileComponent,
     SignupComponent,
     ProfileDetailsComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
