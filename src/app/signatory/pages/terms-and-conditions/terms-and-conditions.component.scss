@@ -6,14 +6,12 @@ body {
   font-family: 'Kalyani', sans-serif;
 }
 .container {
-  width: 100vw; /* Use viewport width */
-  height: 100vh; /* Use viewport height */
   display:flex;
   justify-content: center;
   align-items: center;
   overflow:visible;
   margin-bottom: 150px;
-  margin-top: 140px;
+  margin-top: 120px;
 }
 .terms-and-conditions {
   max-width: 800px;

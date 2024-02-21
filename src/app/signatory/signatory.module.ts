@@ -5,7 +5,7 @@ import { ProfileComponent } from './pages/profile/profile.component'
 import { SignupComponent } from './pages/signup/signup.component'
 import { RouterModule } from '@angular/router'
 import { AuthGuard } from '../shared/auth-guard.guard'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component'
 
 
@@ -14,6 +14,7 @@ import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },

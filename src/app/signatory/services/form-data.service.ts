@@ -5,15 +5,15 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class FormDataService {
-  formData!: FormGroup;
+  formData: { [key: string]: FormGroup } = {};
 
   constructor() { }
 
-  setFormData(formData: FormGroup) {
-    this.formData = formData;
+  setFormData(key: string, formData: FormGroup) {
+    this.formData[key] = formData;
   }
 
-  getFormData() {
-    return this.formData;
+  getFormData(key: string) {
+    return this.formData[key];
   }
 }
