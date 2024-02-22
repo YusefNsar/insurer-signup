@@ -8,7 +8,8 @@ import { ForgotComponent } from './pages/forgot/forgot.component'
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component'
 import { ChangePasswordComponent } from './components/change-password/change-password.component'
 import { AuthGuard } from '../shared/auth-guard.guard'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component'
 
 @NgModule({
   declarations: [
@@ -21,11 +22,13 @@ import { ReactiveFormsModule } from '@angular/forms'
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'forgot', component: ForgotComponent },
+      { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
       {
         path: 'profile',
         component: ProfileComponent,

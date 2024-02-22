@@ -90,6 +90,21 @@ a {
   font-size: $font-size;
 }
 
+.logo {
+  position: absolute;
+  z-index: -1;
+  top:2%;
+  right:4%;
+  margin-top: 5%;
+}
+
+.form-header {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  grid-column: span 2;
+}
 @mixin pseudo-element {
   content: '';
   display: block;

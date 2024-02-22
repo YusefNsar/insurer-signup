@@ -20,7 +20,7 @@
   margin-right: 10px;
   margin-top: 10px;
   border: 0.5px solid #0e2d4a3b;
-  height: 60px;
+  height: 50px;
   border-radius: 20px;
   font-size: 14px;
   &:focus-visible {
@@ -29,6 +29,10 @@
 }
 
 .form-group input[type='checkbox'] {
-  margin-top: 25px;
+  margin-top: 30px;
+  margin-right: 5px;
+  padding:0;
+  height: 20px;
   width: 3%;
+  padding-top: 25px;
 }
