@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from '../../services/form-data.service';
 import { SharedService } from '../../services/shared.service';
 import { ApiService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit {
 
@@ -27,7 +29,8 @@ export class SignupComponent implements OnInit {
     private builder: FormBuilder,
     private formDataService: FormDataService,
     private sharedService: SharedService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private toastr: ToastrService
   ) {
     this.myform = this.builder.group({
       cname: ['', Validators.required],
@@ -127,15 +130,16 @@ export class SignupComponent implements OnInit {
   
         reader.readAsDataURL(file);
       } else {
-        // Show alert for non-PDF file
         this.showFileTypeAlert = true;
   
-        // Hide the alert after a few seconds (adjust as needed)
-        setTimeout(() => {
-          this.showFileTypeAlert = false;
-        }, 3000);
-  
-        // Optionally, you can clear the input or take other actions
+        this.toastr.error( 'Please add your files in PDF format','Invalid file format', {
+          progressBar: true,
+          closeButton: true,
+          positionClass: 'toast-top-center',
+          timeOut: 3500,
+          easeTime:350,
+        });
+
         console.log(`${file.name} is not a PDF. Ignoring.`);
       }
     }

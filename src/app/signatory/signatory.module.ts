@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router'
 import { AuthGuard } from '../shared/auth-guard.guard'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component'
+import { ToastrModule } from 'ngx-toastr'
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    ToastrModule.forRoot(),
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
