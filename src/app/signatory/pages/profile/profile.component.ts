@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { AuthService } from '@auth0/auth0-angular'
 
 @Component({
   selector: 'app-profile',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core'
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
+  constructor(private auth: AuthService) {}
   profile: Profile = {
     company: {
       name: 'AXA Insurance (Gulf) B.S.C. (C)',
@@ -24,6 +26,10 @@ export class ProfileComponent {
 
   setActiveItem = (newActive: string) => {
     this.activeItem = newActive
+  }
+
+  logout() {
+    this.auth.logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
   menuItems: MenuItem[] = [

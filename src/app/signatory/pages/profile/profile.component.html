@@ -10,7 +10,7 @@
       <div
         *ngFor="let i of menuItems"
         [class]="'menu-item' + (i.value === activeItem ? ' active' : '')"
-        (click)="setActiveItem(i.value)"
+        (click)="i.value === 'logout' ? logout() : setActiveItem(i.value)"
       >
         {{ i.title }}
       </div>
