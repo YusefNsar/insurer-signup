@@ -21,7 +21,6 @@ export class SignupComponent implements OnInit {
   table:string='';
   isChecked:boolean=false;
   checkboxState: boolean = false;
-  showFileTypeAlert: boolean = false;
   myform: FormGroup;
   signatoryform:FormGroup;
 
@@ -130,15 +129,8 @@ export class SignupComponent implements OnInit {
   
         reader.readAsDataURL(file);
       } else {
-        this.showFileTypeAlert = true;
   
-        this.toastr.error( 'Please add your files in PDF format','Invalid file format', {
-          progressBar: true,
-          closeButton: true,
-          positionClass: 'toast-top-center',
-          timeOut: 3500,
-          easeTime:350,
-        });
+        this.onFailure("Invalid file format","Please submit your files in a PDF format");
 
         console.log(`${file.name} is not a PDF. Ignoring.`);
       }
@@ -256,6 +248,7 @@ getTableArray(): any[] {
       documentsbase64: uploadedFiles,
     };
   }
+
   submit() {
     const formData = this.myform.value;
     const signatoryFormData = this.signatoryform.value;
@@ -264,10 +257,61 @@ getTableArray(): any[] {
     // Transform form data to match the API payload
     const apiRequestBody = this.mapToApiRequestBody(formData, signatoryFormData, uploadedFiles);
     this.apiService.submitFormData(apiRequestBody)
-      .subscribe(response => {
-        // Handle the API response here
-        console.log('API Response:', response);
-      });
+    .subscribe(
+      () => {
+        // If you're here, it means there was a successful response with an empty body
+        this.onSuccess('Form submitted successfully!', 'Now closing the window');
+      },
+      error => {
+        if (error.status) {
+          // If status is present, it's an HTTP error response
+          if (error.status >= 200 && error.status < 300) {
+            // Treat as success if status is in the success range
+            this.onSuccess('Success', 'Form submitted successfully!');
+          } else {
+            // Treat as failure
+            this.onFailure('Error', this.getErrorMessage(error.status));
+          }
+        } else {
+        this.onFailure('Failed to submit form.', ' User already exists.');
+        }
+      }
+    );
+  }
+  
+  onSuccess(title: string, body: string) {
+    this.toastr.success(body, title, {
+      progressBar: true,
+      closeButton: true,
+      positionClass: 'toast-top-center',
+      timeOut: 3500,
+      easeTime: 350,
+    });
+  }
+  
+  onFailure(title: string, body: string) {
+    this.toastr.error(body, title, {
+      progressBar: true,
+      closeButton: true,
+      positionClass: 'toast-top-center',
+      timeOut: 3500,
+      easeTime: 350,
+    });
+  }
+  
+  getErrorMessage(status: number): string {
+    switch (status) {
+      case 404:
+        return 'File upload failed';
+      case 409:
+        return 'User already exists';
+      case 400:
+        return 'Bad request';
+      case 500:
+        return 'Something went wrong';
+      default:
+        return 'Unknown error';
+    }
   }
   
   
