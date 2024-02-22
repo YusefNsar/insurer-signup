@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router'
 import { ReviewCompanyComponent } from './pages/review-company/review-company.component'
 import { CardComponent } from '../shared/card/card.component'
 import { DocumentComponent } from '../shared/document/document.component'
+import { DropdownRadioComponent } from '../shared/dropdown-radio/dropdown-radio.component'
 
 @NgModule({
   declarations: [
@@ -17,12 +18,13 @@ import { DocumentComponent } from '../shared/document/document.component'
     CommonModule,
     CardComponent,
     DocumentComponent,
+    DropdownRadioComponent,
     RouterModule.forChild([
       { path: 'login', component: AdminLoginComponent },
       { path: 'registered-forms', component: RegisteredFormsComponent },
       { path: 'review', component: ReviewCompanyComponent },
       // { path: '**', redirectTo: 'login' },
-      { path: '**', redirectTo: 'review' },
+      { path: '**', redirectTo: 'registered-forms' },
     ]),
   ],
 })

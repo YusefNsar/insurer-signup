@@ -1,0 +1,28 @@
+@import '../../../styles.scss';
+
+.buttons-stack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 25px;
+}
+
+.button {
+  width: 179.27px;
+  height: 42.4px;
+  border-radius: $border-radius;
+}
+
+.accept {
+  background-color: $success-color;
+  &:hover {
+    background-color: lighten($success-color, 10%);
+  }
+}
+
+.reject {
+  background-color: $error-color;
+  &:hover {
+    background-color: lighten($error-color, 10%);
+  }
+}
