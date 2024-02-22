@@ -10,6 +10,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { AuthGuard } from '../shared/auth-guard.guard'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component'
+import { ToastrModule } from 'ngx-toastr'
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },

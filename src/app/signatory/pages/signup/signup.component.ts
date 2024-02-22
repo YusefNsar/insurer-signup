@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from '../../services/form-data.service';
 import { SharedService } from '../../services/shared.service';
 import { ApiService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit {
 
@@ -19,7 +24,6 @@ export class SignupComponent implements OnInit {
   table:string='';
   isChecked:boolean=false;
   checkboxState: boolean = false;
-  showFileTypeAlert: boolean = false;
   myform: FormGroup;
   signatoryform:FormGroup;
 
@@ -27,7 +31,10 @@ export class SignupComponent implements OnInit {
     private builder: FormBuilder,
     private formDataService: FormDataService,
     private sharedService: SharedService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private toastr: ToastrService,
+    private el: ElementRef,
+    private router: Router
   ) {
     this.myform = this.builder.group({
       cname: ['', Validators.required],
@@ -127,15 +134,9 @@ export class SignupComponent implements OnInit {
   
         reader.readAsDataURL(file);
       } else {
-        // Show alert for non-PDF file
-        this.showFileTypeAlert = true;
   
-        // Hide the alert after a few seconds (adjust as needed)
-        setTimeout(() => {
-          this.showFileTypeAlert = false;
-        }, 3000);
-  
-        // Optionally, you can clear the input or take other actions
+        this.onFailure("Invalid file format","Please submit your files in a PDF format");
+
         console.log(`${file.name} is not a PDF. Ignoring.`);
       }
     }
@@ -252,6 +253,7 @@ getTableArray(): any[] {
       documentsbase64: uploadedFiles,
     };
   }
+
   submit() {
     const formData = this.myform.value;
     const signatoryFormData = this.signatoryform.value;
@@ -260,10 +262,69 @@ getTableArray(): any[] {
     // Transform form data to match the API payload
     const apiRequestBody = this.mapToApiRequestBody(formData, signatoryFormData, uploadedFiles);
     this.apiService.submitFormData(apiRequestBody)
-      .subscribe(response => {
-        // Handle the API response here
-        console.log('API Response:', response);
-      });
+    .subscribe(
+      () => {
+        // If you're here, it means there was a successful response with an empty body
+        this.onSuccess('Successful submission!', 'Now routing you to login page');
+        const submitButton = this.el.nativeElement.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
+      setTimeout(() => {
+        this.router.navigate(['/insurer/login']); 
+      }, 3500);
+      },
+      error => {
+        if (error.status) {
+          // If status is present, it's an HTTP error response
+          if (error.status >= 200 && error.status < 300) {
+            // Treat as success if status is in the success range
+            this.onSuccess('Success', 'Form submitted successfully!');
+          } else {
+            // Treat as failure
+            this.onFailure('Error', this.getErrorMessage(error.status));
+          }
+        } else {
+        this.onFailure('Failed to submit form.', ' User already exists.');
+        }
+      }
+    );
+  }
+  
+  onSuccess(title: string, body: string) {
+    this.toastr.success(body, title, {
+      progressBar: true,
+      closeButton: true,
+      positionClass: 'toast-top-center',
+      timeOut: 3500,
+      easeTime: 350,
+    });
+  }
+  
+  onFailure(title: string, body: string) {
+    this.toastr.error(body, title, {
+      progressBar: true,
+      closeButton: true,
+      positionClass: 'toast-top-center',
+      timeOut: 3500,
+      easeTime: 350,
+    });
+  }
+  
+  getErrorMessage(status: number): string {
+    switch (status) {
+      case 404:
+        return 'File upload failed';
+      case 409:
+        return 'User already exists';
+      case 400:
+        return 'Bad request';
+      case 500:
+        return 'Something went wrong';
+      default:
+        return 'Unknown error';
+    }
   }
   
   

@@ -1,5 +1,14 @@
+@import '../../.././../../node_modules/bootstrap/scss/functions';
+@import '../../.././../../node_modules/bootstrap/scss/mixins';
+@import '../../.././../../node_modules/bootstrap/scss/variables';
+@import '../../.././../../node_modules/bootstrap/scss/_variables.scss';
+
+@import 'ngx-toastr/toastr';
+@import 'ngx-toastr/toastr-bs5-alert';
 @import '../../../../styles.scss';
 @import '../../../shared/styles/form-input.scss';
+
+
 body {
   margin: 0;
   padding: 0;
@@ -336,32 +345,4 @@ a {
     cursor: not-allowed;
   }
 
-
-  .file-type-alert {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: whitesmoke;
-    color: #f44336;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-  }
   
-  .vertical-bar {
-    width: 5px;
-    height: 100%;
-    background-color: #f44336;
-    margin-right: 10px;
-    z-index: 5;
-  }
-  
-
-  .close-icon {
-    cursor: pointer;
-  }
