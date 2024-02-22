@@ -1,0 +1,38 @@
+@import '../../../../styles.scss';
+@import '../../../shared/styles/form-input.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-family: 'GFS Didot', sans-serif;
+  font-size: 42px;
+  margin: 0 0 20px 0;
+  font-weight: 400;
+  line-height: 101px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: $primary-color;
+}
+.form {
+  padding: 16px 20px;
+}
+
+.login-btn {
+  width: 100%;
+  font-family: Poppins, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 50px;
+}

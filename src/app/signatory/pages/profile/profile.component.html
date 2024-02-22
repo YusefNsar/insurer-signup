@@ -1,1 +1,28 @@
-<p>profile works!</p>
+<div class="profile">
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+    <div class="company">
+      <img src="/assets/company.png" alt="company-logo" />
+      <p>{{ profile.company.name }}</p>
+    </div>
+
+    <div class="menu">
+      <div
+        *ngFor="let i of menuItems"
+        [class]="'menu-item' + (i.value === activeItem ? ' active' : '')"
+        (click)="i.value === 'logout' ? logout() : setActiveItem(i.value)"
+      >
+        {{ i.title }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub Page -->
+  <div class="subpage">
+    <app-profile-details
+      *ngIf="activeItem === menuItems[0].value"
+      [signatory]="profile.signatory"
+    />
+    <app-change-password *ngIf="activeItem === menuItems[1].value" />
+  </div>
+</div>

@@ -1,0 +1,47 @@
+@import '../../../../styles.scss';
+
+.profile-header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: $primary-color;
+}
+
+.profile-header img {
+  height: 44px;
+  margin-right: 10px;
+}
+
+.profile-header p {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;
+  row-gap: 30px;
+}
+
+.fields > * {
+  display: flex;
+  align-items: center;
+  max-width: 340px;
+  height: 52.1px;
+  border-radius: 12px;
+  padding: 0px 20px;
+
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: $primary-color;
+  background-color: #fff;
+}
