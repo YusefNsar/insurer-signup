@@ -1,0 +1,22 @@
+<h4>Insurance Forms Registered</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Action</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td>{{ item.companyName }}</td>
+      <td>{{ item.date }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.action }}</td>
+      <td>{{ item.other }}</td>
+    </tr>
+  </tbody>
+</table>

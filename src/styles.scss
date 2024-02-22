@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use 'sass:color';
+
+// Color Palette
+$primary-color: #0e2d4a;
+$secondary-color: #737577;
+$success-color: #28a745;
+$error-color: #dc3545;
+$warning-color: #ffc107;
+// $secondary-color: #6c757d;#737577 #5F646D2E
+
+// Typography
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap&family=GFS+Didot&display=swap');
+
+@font-face {
+  font-family: 'Malayalam MN';
+  src: url('./assets/fonts/malayalam-mn.ttf') format('ttf');
+}
+
+$font-family: 'Malayalam MN', sans-serif;
+$font-size: 16px;
+$heading-font-weight: bold;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 40px;
+
+// Border Radius
+$border-radius: 8px;
+
+// Button Styles
+@mixin button-styles {
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: $border-radius;
+  font-family: $font-family;
+  font-size: $font-size;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+  }
+}
+
+// Global Styles
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family;
+  font-weight: $heading-font-weight;
+}
+
+// Button Styles
+.button {
+  @include button-styles;
+  background-color: $primary-color;
+  color: #fff;
+  height: 60px;
+  border-radius: 20px;
+}
+
+// Input Styles
+.input {
+  padding: $spacing-sm;
+  border: 1px solid #ccc;
+  border-radius: $border-radius;
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+.logo {
+  position: absolute;
+  z-index: -1;
+  top:2%;
+  right:4%;
+  margin-top: 5%;
+}
+
+.form-header {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  grid-column: span 2;
+}
+@mixin pseudo-element {
+  content: '';
+  display: block;
+  position: absolute;
+}
