@@ -8,7 +8,7 @@
   </button>
   <ul class="dropdown-menu">
     @if (selectedOption !== null) {
-      <li class="dropdown-item" (click)="selectedOption = null">
+      <li class="dropdown-item" (click)="selectOption(null)">
         <input
           type="radio"
           name="clear"

@@ -45,6 +45,11 @@ $border-radius: 8px;
   &:disabled {
     background-color: $secondary-color;
   }
+
+  &:disabled:hover {
+    background-color: $secondary-color;
+    cursor: default;
+  }
 }
 
 // Global Styles
@@ -93,8 +98,8 @@ a {
 .logo {
   position: absolute;
   z-index: -1;
-  top:2%;
-  right:4%;
+  top: 2%;
+  right: 4%;
   margin-top: 5%;
 }
 
