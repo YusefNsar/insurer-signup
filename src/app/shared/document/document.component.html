@@ -1,4 +1,6 @@
-<div class="document" (click)="downloadFile()">
-  <img class="document-icon" src="/assets/pdf-icon.png" />
-  <div class="document-name">{{ documentName }}</div>
-</div>
+<a [href]="documentUrl" [download]="documentName + '.pdf'">
+  <div class="document">
+    <img class="document-icon" src="/assets/pdf-icon.png" />
+    <div class="document-name">{{ documentName }}</div>
+  </div>
+</a>

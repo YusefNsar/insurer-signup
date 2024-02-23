@@ -1,36 +1,46 @@
-<!-- Company Data -->
-<app-card cardTitle="Review company data" class="company-card">
-  <div class="grid">
-    <p>Company Name: {{ company.name }}</p>
-    <p>Work Number : 23355</p>
-    <p>Registered Address : {{ company.registeredAddress }}</p>
-    <p>Official website of the company (hyperlink) : {{ company.website }}</p>
-    <p>Email : {{ company.email }}</p>
-    <p>
-      CBUAE Registration Number and date of expiry of license :
-      {{ company.cvuae }}
-    </p>
-    <p>Phone : {{ company.phone }}</p>
-    <p>
-      Commercial license number and date of expiry of license :
-      {{ company.commercialNumber }} - {{ company.commercialExpiry }}
-    </p>
-    <p>
-      Name of the authorized representative of the company :
-      {{ company.authorizedRepresentative }}
-    </p>
-  </div>
-</app-card>
+<div>
+  <!-- Company Data -->
+  <app-card cardTitle="Review company data" class="company-card">
+    <div class="grid">
+      <p>Company Name: {{ company.companyName }}</p>
+      <p>Work Number : 23355</p>
+      <p>Registered Address : {{ company.registeredAddress }}</p>
+      <p>
+        Official website of the company (hyperlink) :
+        {{ company.companyWebsite }}
+      </p>
+      <p>Email : {{ company.email }}</p>
+      <p>
+        CBUAE Registration Number and date of expiry of license :
+        {{ company.cbuaeLicense }} - {{ company.cbuaeLicenseExpiry | date }}
+      </p>
+      <p>Phone : {{ company.phoneNumber }}</p>
+      <p>
+        Commercial license number and date of expiry of license :
+        {{ company.commercialLicense }} -
+        {{ company.commercialLicenseExpiry | date }}
+      </p>
+      <p>
+        Name of the authorized representative of the company :
+        {{ company.name }}
+      </p>
+    </div>
+  </app-card>
 
-<!-- Documents Uploaded -->
-<app-card cardTitle="Documents" class="document-card">
-  <div class="doc-stack">
-    <app-document *ngFor="let doc of documents" [documentName]="doc" />
-  </div>
-</app-card>
+  <!-- Documents Uploaded -->
+  <app-card cardTitle="Documents" class="document-card">
+    <div class="doc-stack">
+      <app-document
+        *ngFor="let docUrl of company.documentsUrl"
+        [documentName]="getNameFromUrl(docUrl) || docUrl"
+        [documentUrl]="docUrl"
+      />
+    </div>
+  </app-card>
 
-<!-- Accept / Reject -->
-<div class="buttons-stack">
-  <button class="accept button">Accept</button>
-  <button class="reject button">Reject</button>
+  <!-- Accept / Reject -->
+  <div class="buttons-stack">
+    <button class="accept button">Accept</button>
+    <button class="reject button">Reject</button>
+  </div>
 </div>

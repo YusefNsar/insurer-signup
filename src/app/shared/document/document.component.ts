@@ -8,10 +8,6 @@ import { Component, Input } from '@angular/core'
   styleUrl: './document.component.scss',
 })
 export class DocumentComponent {
-  @Input() documentFile: File | undefined
+  @Input() documentUrl: string | undefined
   @Input() documentName: String = ''
-
-  downloadFile() {
-    console.log('download docs')
-  }
 }
