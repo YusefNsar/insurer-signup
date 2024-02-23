@@ -1,4 +1,5 @@
 @import '../../../../styles.scss';
+@import '../../../shared/styles/review-actions.scss';
 
 .grid {
   display: grid;
@@ -28,37 +29,11 @@
 
 .document-card {
   display: block;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 }
 
 .doc-stack {
   display: flex;
   column-gap: 70px;
   padding: 10vh 7vh;
-}
-
-.buttons-stack {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 60px;
-}
-
-.button {
-  width: 179.27px;
-  height: 42.4px;
-}
-
-.accept {
-  background-color: $success-color;
-  &:hover {
-    background-color: lighten($success-color, 10%);
-  }
-}
-
-.reject {
-  background-color: $error-color;
-  &:hover {
-    background-color: lighten($error-color, 10%);
-  }
 }

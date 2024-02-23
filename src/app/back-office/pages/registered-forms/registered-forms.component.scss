@@ -1,26 +1,114 @@
 @import '../../../../styles.scss';
+@import '../../../shared/styles/review-actions.scss';
 
 h4 {
-  font-family: $font-family;
+  font-family: 'Noto Serif Malayalam', serif;
   font-size: 33px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 47px;
   letter-spacing: 0em;
   text-align: left;
+  margin: 0 0 20px 0;
+  color: $primary-color;
+  text-align: center;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+thead {
+  background-color: #0e2d4a;
+  color: #fff;
+}
+
+th:first-of-type {
+  border-top-left-radius: 12px;
+}
+th:last-of-type {
+  border-top-right-radius: 12px;
+}
+tr:last-of-type > td:first-of-type {
+  border-bottom-left-radius: 12px;
+  display: block;
+}
+tr:last-of-type > td:last-of-type {
+  border-bottom-right-radius: 12px;
+  display: block;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+  padding: 10px 46px;
+  text-wrap: nowrap;
 }
 
 th {
-  background-color: #f2f2f2;
+  font-weight: 500;
+}
+
+td {
+  border: 1px solid #0e2d4a17;
+  background-color: #fcfcfc;
+  font-weight: 600;
+}
+
+td:not(td:last-child) {
+  border-right: 0;
+}
+td:not(td:first-child) {
+  border-left: 0;
+}
+
+td {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: $primary-color;
+}
+
+.status-accepted {
+  color: $success-color;
+}
+.status-rejected {
+  color: $error-color;
+}
+.status-pending {
+  color: $warning-color;
+}
+
+td.actions {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.buttons-stack {
+  column-gap: 12px;
+  justify-content: flex-start;
+}
+
+.button {
+  width: 112px;
+  height: 26px;
+
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.review-link {
+  text-decoration: underline;
 }
