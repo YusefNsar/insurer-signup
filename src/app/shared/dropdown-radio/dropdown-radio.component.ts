@@ -17,11 +17,11 @@ import {
 })
 export class DropdownRadioComponent {
   @Input({ required: true }) options!: string[]
-  @Output() optionSelected = new EventEmitter<string>()
+  @Output() optionSelected = new EventEmitter<string | null>()
 
   selectedOption: string | null = null
 
-  selectOption(option: string) {
+  selectOption(option: string | null) {
     this.selectedOption = option
     this.optionSelected.emit(option)
   }
