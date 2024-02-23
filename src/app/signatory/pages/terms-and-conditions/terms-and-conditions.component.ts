@@ -14,5 +14,9 @@ export class TermsAndConditionsComponent {
     this.sharedService.setAgreeState(true);
     this.router.navigate(['/insurer/signup']); 
   }
+  declineTerms(): void {
+    this.sharedService.setAgreeState(false);
+    this.router.navigate(['/insurer/signup']); 
+  }
 
 }
