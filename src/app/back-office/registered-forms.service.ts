@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { config } from '../shared/config'
-import { of, map } from 'rxjs'
+import { of, map, Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +45,16 @@ export class RegisteredFormsService {
   loading = true
 
   constructor(private http: HttpClient) {}
+
+  updateFormStatus(formId: string, newStatus: string): Observable<boolean> {
+    this.loading=true
+    const apiUrl = `${config.signatoryApi}/${formId}/status/${newStatus}`;
+
+    return this.http.put(apiUrl, {}).pipe(
+      
+      map(() => true,this.loading = false), 
+    );
+  }
 
   getAllForms() {
     this.loading = true

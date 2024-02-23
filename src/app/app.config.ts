@@ -29,10 +29,12 @@ export const appConfig: ApplicationConfig = {
         },
         httpInterceptor: {
           allowedList: [
+            { uri: 'https://signupback.azurewebsites.net/api/Signatory', httpMethod: 'POST', allowAnonymous: true },
             { uri: `${config.signatoryApi}/*` },
             { uri: `${config.signatoryApi}` },
           ],
         },
+        
       }),
     ]),
   ],

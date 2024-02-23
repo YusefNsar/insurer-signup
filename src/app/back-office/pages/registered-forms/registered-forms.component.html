@@ -15,7 +15,7 @@
         Status
         <app-dropdown-radio
           [options]="statusOptions"
-          (optionSelected)="updateStatus($event)"
+          (optionSelected)="updateStatusFilter($event)"
         />
       </th>
       <th>Action</th>
@@ -37,12 +37,14 @@
           <button
             class="accept button"
             [disabled]="item.status.toLowerCase() !== 'pending'"
+            (click)="updateStatus(item.id, 'accepted')"
           >
             Accept
           </button>
           <button
             class="reject button"
             [disabled]="item.status.toLowerCase() !== 'pending'"
+            (click)="updateStatus(item.id, 'rejected')"
           >
             Reject
           </button>
