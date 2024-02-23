@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { RegisteredFormsService } from '../../registered-forms.service'
+import {
+  CompanyForms,
+  RegisteredFormsService,
+} from '../../registered-forms.service'
 
 @Component({
   selector: 'app-registered-forms',
@@ -7,40 +10,35 @@ import { RegisteredFormsService } from '../../registered-forms.service'
   styleUrl: './registered-forms.component.scss',
 })
 export class RegisteredFormsComponent implements OnInit {
-  constructor(private rf: RegisteredFormsService) {}
+  constructor(public rf: RegisteredFormsService) {}
 
   ngOnInit(): void {
-    this.rf.getAllForms().subscribe(forms => console.log(forms))
+    this.rf.getAllForms().subscribe(forms => {
+      this.data = forms
+      this.companyNameFiltersOptions = this.data.map(d => d.companyName)
+    })
+    // this.rf.getFormById('1').subscribe(form => console.log('found it', form))
   }
 
-  data = [
-    {
-      id: '1',
-      companyName: 'Company A',
-      date: '2023-12-01',
-      status: 'accepted',
-      action: 'Edit',
-      other: 'Extra Data 1',
-    },
-    {
-      id: '2',
-      companyName: 'Company B',
-      date: '2023-12-02',
-      status: 'rejected',
-      action: 'Delete',
-      other: 'Extra Data 2',
-    },
-    {
-      id: '3',
-      companyName: 'Company C',
-      date: '2023-12-02',
-      status: 'pending',
-      action: 'Delete',
-      other: 'Extra Data 2',
-    },
-    // Add more data objects as needed
-  ]
+  data: CompanyForms[] = []
 
+  updateCompanyName(option: string | null) {
+    this.activeCompanyName = option
+    this.data = this.rf.filterForms({
+      companyName: this.activeCompanyName,
+      status: this.activeStatus,
+    })
+    this.companyNameFiltersOptions = this.data.map(d => d.companyName)
+  }
+
+  updateStatus(option: string | null) {
+    this.activeStatus = option
+    this.data = this.rf.filterForms({
+      companyName: this.activeCompanyName,
+      status: this.activeStatus,
+    })
+    this.companyNameFiltersOptions = this.data.map(d => d.companyName)
+  }
   // company name filter
   companyNameFiltersOptions = this.data.map(d => d.companyName)
   activeCompanyName: string | null = null

@@ -7,7 +7,7 @@
         Company Name
         <app-dropdown-radio
           [options]="companyNameFiltersOptions"
-          (optionSelected)="activeCompanyName = $event"
+          (optionSelected)="updateCompanyName($event)"
         />
       </th>
       <th>Date</th>
@@ -15,7 +15,7 @@
         Status
         <app-dropdown-radio
           [options]="statusOptions"
-          (optionSelected)="activeStatus = $event"
+          (optionSelected)="updateStatus($event)"
         />
       </th>
       <th>Action</th>
@@ -23,14 +23,29 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td *ngIf="rf.loading" colspan="5">loading...</td>
+    </tr>
     <tr *ngFor="let item of data">
       <td>{{ item.companyName }}</td>
-      <td>{{ item.date }}</td>
-      <td [class]="'status-' + item.status">{{ item.status | titlecase }}</td>
+      <td>{{ item.cbuaeLicenseExpiry | date }}</td>
+      <td [class]="'status-' + item.status.toLowerCase()">
+        {{ item.status | titlecase }}
+      </td>
       <td class="actions">
         <div class="buttons-stack">
-          <button class="accept button">Accept</button>
-          <button class="reject button">Reject</button>
+          <button
+            class="accept button"
+            [disabled]="item.status.toLowerCase() !== 'pending'"
+          >
+            Accept
+          </button>
+          <button
+            class="reject button"
+            [disabled]="item.status.toLowerCase() !== 'pending'"
+          >
+            Reject
+          </button>
         </div>
       </td>
       <td>
