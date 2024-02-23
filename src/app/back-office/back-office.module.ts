@@ -22,7 +22,7 @@ import { DropdownRadioComponent } from '../shared/dropdown-radio/dropdown-radio.
     RouterModule.forChild([
       { path: 'login', component: AdminLoginComponent },
       { path: 'registered-forms', component: RegisteredFormsComponent },
-      { path: 'review', component: ReviewCompanyComponent },
+      { path: 'review/:formId', component: ReviewCompanyComponent },
       // { path: '**', redirectTo: 'login' },
       { path: '**', redirectTo: 'registered-forms' },
     ]),

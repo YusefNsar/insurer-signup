@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-review-company',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core'
   styleUrl: './review-company.component.scss',
 })
 export class ReviewCompanyComponent {
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    // Retrieve route parameters
+    const id = this.route.snapshot.paramMap.get('formId')
+    console.log('ID:', id)
+  }
+
   company = {
     name: 'axa',
     workNumber: 23355,

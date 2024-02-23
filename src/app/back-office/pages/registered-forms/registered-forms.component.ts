@@ -1,11 +1,18 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { RegisteredFormsService } from '../../registered-forms.service'
 
 @Component({
   selector: 'app-registered-forms',
   templateUrl: './registered-forms.component.html',
   styleUrl: './registered-forms.component.scss',
 })
-export class RegisteredFormsComponent {
+export class RegisteredFormsComponent implements OnInit {
+  constructor(private rf: RegisteredFormsService) {}
+
+  ngOnInit(): void {
+    this.rf.getAllForms().subscribe(forms => console.log(forms))
+  }
+
   data = [
     {
       id: '1',

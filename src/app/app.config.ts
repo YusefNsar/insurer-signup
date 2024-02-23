@@ -29,9 +29,8 @@ export const appConfig: ApplicationConfig = {
         },
         httpInterceptor: {
           allowedList: [
-            {
-              uri: `${config.signatoryApi}/*`,
-            },
+            { uri: `${config.signatoryApi}/*` },
+            { uri: `${config.signatoryApi}` },
           ],
         },
       }),
