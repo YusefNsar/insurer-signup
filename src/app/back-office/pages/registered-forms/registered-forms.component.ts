@@ -46,11 +46,6 @@ export class RegisteredFormsComponent implements OnInit {
     this.rf.updateFormStatus(formIdToUpdate, option).subscribe(
       success => {
         if (success) {
-          const formToUpdate = this.data.find(f => f.id === formIdToUpdate);
-
-          if (formToUpdate) {
-            formToUpdate.status = option;
-          }
           console.log('Form status updated successfully');
         } else {
           console.error('Failed to update form status');

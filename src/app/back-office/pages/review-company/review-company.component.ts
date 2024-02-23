@@ -4,6 +4,7 @@ import {
   CompanyForms,
   RegisteredFormsService,
 } from '../../registered-forms.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-review-company',
@@ -12,6 +13,7 @@ import {
 })
 export class ReviewCompanyComponent {
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     public rf: RegisteredFormsService,
   ) {}
@@ -31,5 +33,17 @@ export class ReviewCompanyComponent {
 
   getNameFromUrl(url: string): string | undefined {
     return url.split('/').at(-1)?.split('.')[0]
+  }
+  updateStatus( option: string) {
+    this.rf.updateFormStatus(this.company.id, option).subscribe(
+      success => {
+        if (success) {
+          console.log('Form status updated successfully');
+          this.router.navigate(['/back-office/registered-forms']);
+        } else {
+          console.error('Failed to update form status');
+        }
+      })
+
   }
 }
