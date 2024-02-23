@@ -3,9 +3,21 @@
 <table>
   <thead>
     <tr>
-      <th>Company Name</th>
+      <th>
+        Company Name
+        <app-dropdown-radio
+          [options]="companyNameFiltersOptions"
+          (optionSelected)="activeCompanyName = $event"
+        />
+      </th>
       <th>Date</th>
-      <th>Status</th>
+      <th>
+        Status
+        <app-dropdown-radio
+          [options]="statusOptions"
+          (optionSelected)="activeStatus = $event"
+        />
+      </th>
       <th>Action</th>
       <th></th>
     </tr>
@@ -14,9 +26,18 @@
     <tr *ngFor="let item of data">
       <td>{{ item.companyName }}</td>
       <td>{{ item.date }}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.action }}</td>
-      <td>{{ item.other }}</td>
+      <td [class]="'status-' + item.status">{{ item.status | titlecase }}</td>
+      <td class="actions">
+        <div class="buttons-stack">
+          <button class="accept button">Accept</button>
+          <button class="reject button">Reject</button>
+        </div>
+      </td>
+      <td>
+        <a class="review-link" [routerLink]="'/back-office/review/' + item.id"
+          >Review</a
+        >
+      </td>
     </tr>
   </tbody>
 </table>

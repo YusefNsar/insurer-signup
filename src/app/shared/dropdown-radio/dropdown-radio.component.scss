@@ -1,0 +1,29 @@
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../node_modules/bootstrap/scss/mixins';
+@import '../../../../node_modules/bootstrap/scss/variables';
+@import '../../../../node_modules/bootstrap/scss/_variables.scss';
+
+@import '../../../styles.scss';
+
+.dropdown {
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  padding: 0 0 3px 4px;
+}
+
+.toggle-arrow {
+  width: 12px;
+  height: 8px;
+  margin: 0 auto;
+}
+
+.dropdown-menu {
+  max-height: 240px;
+  overflow: auto;
+}
+
+.dropdown-item input {
+  margin-right: 10px;
+}

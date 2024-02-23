@@ -16,8 +16,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(isAuthenticated =>
-      isAuthenticated ? this.router.navigate(['/insurer/profile']) : false,
+      // isAuthenticated ? this.router.navigate(['/insurer/profile']) : false,
+      isAuthenticated ? this.router.navigate(['/back-office']) : false,
     )
+    this.auth.getAccessTokenSilently({}).subscribe(token => console.log(token))
   }
 
   login() {
