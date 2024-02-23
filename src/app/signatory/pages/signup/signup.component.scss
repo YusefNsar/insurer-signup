@@ -8,7 +8,6 @@
 @import '../../../../styles.scss';
 @import '../../../shared/styles/form-input.scss';
 
-
 body {
   margin: 0;
   padding: 0;
@@ -20,6 +19,7 @@ body {
   display: grid;
   justify-content: center;
   align-items: center;
+  z-index: -1;
 }
 
 .insurance-form {
@@ -27,12 +27,16 @@ body {
   margin-top: 15%;
   max-width: 800px;
   padding: 50px;
-  background-color: white;
+  background-color: #ffffffc4;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2-column grid */
   gap: 35px;
+  z-index: 10;
+}
+.insurance-form input {
+  background-color: #ffffffc4;
 }
 .signatory-form {
   width: 100%;
@@ -73,7 +77,6 @@ body {
 
 .button-container {
   text-align: center;
-
 }
 .form-group button {
   padding: 15px 20px;
@@ -84,7 +87,6 @@ body {
   cursor: pointer;
   font-size: 16px;
   width: 50%;
-  
 }
 .upload-container {
   width: 100%;
@@ -120,15 +122,15 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   transition: opacity 0.3s ease;
 }
-.upload-popup p{
-  margin:25px;
+.upload-popup p {
+  margin: 25px;
 }
 .upload-popup-title {
-    font-size: 1.5rem;
-    color: $primary-color; 
-    margin-bottom: 20px; 
-    align-self: flex-start;
-  }
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
 .upload-popup-content {
   background-color: #fefefe;
   margin: 5% auto 0;
@@ -139,48 +141,49 @@ body {
   height: 65%;
   font-weight: bold;
   position: relative;
-  justify-content: space-between; 
-    .buttons-container {
-        display: flex;
-        justify-content: center;
-        margin:0;
-        margin-bottom: 10px;
-        align-items: center;
-        position: absolute;
-        bottom: 0;left:0;
-        width: 100%;
-        .savebutton {
-            width: 25%;
-            color: #ffffff;
-            background-color: $primary-color;
-            margin-left:10px;
-            margin-right:10px;
-            border: 1px solid $primary-color;
-            font-weight: bold;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .clearbutton {
-            width: 25%;
-            background-color: #ffffff;
-            color: $primary-color;
-            margin-left:10px;
-            margin-right:10px;
-            border: 1px solid $primary-color;
-            font-weight: bold;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        
-        .clearbutton:hover {
-            background-color: #f0f0f0;
-        }
-        .savebutton:hover {
-            background-color: #1492a3;
-        }
+  justify-content: space-between;
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 10px;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    .savebutton {
+      width: 25%;
+      color: #ffffff;
+      background-color: $primary-color;
+      margin-left: 10px;
+      margin-right: 10px;
+      border: 1px solid $primary-color;
+      font-weight: bold;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
     }
+    .clearbutton {
+      width: 25%;
+      background-color: #ffffff;
+      color: $primary-color;
+      margin-left: 10px;
+      margin-right: 10px;
+      border: 1px solid $primary-color;
+      font-weight: bold;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .clearbutton:hover {
+      background-color: #f0f0f0;
+    }
+    .savebutton:hover {
+      background-color: #1492a3;
+    }
+  }
 }
 
 .upload-popup-header {
@@ -200,7 +203,7 @@ body {
 }
 
 .custom-file-label {
-  margin:10px;
+  margin: 10px;
   background-color: #ffffff;
   color: $primary-color;
   border: 1px solid $primary-color;
@@ -221,8 +224,8 @@ body {
 
 .close {
   float: right;
-  top:5px;
-  right:15px;
+  top: 5px;
+  right: 15px;
   position: absolute;
   cursor: pointer;
 }
@@ -230,7 +233,6 @@ body {
 .upload-popup-body {
   padding: 2px 16px;
   text-align: center;
-
 }
 
 .fileList {
@@ -240,10 +242,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  align-items:left;
-
+  align-items: left;
 }
-
 
 .document-items {
   display: flex;
@@ -304,7 +304,7 @@ a {
   justify-content: space-between;
   border-width: 75%;
   border-bottom: 1px solid #ccc;
-  margin:15px;
+  margin: 15px;
   padding-bottom: 5px;
 }
 .pdf-icon {
@@ -335,14 +335,15 @@ a {
   background-color: #1492a3;
 }
 
-
 #fileInput {
   display: none;
 }
 .disabled {
-    background-color: #ccc;
-    color: #888;
-    cursor: not-allowed;
-  }
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
 
-  
+.logo {
+  z-index: 5;
+}
