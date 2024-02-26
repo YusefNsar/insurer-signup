@@ -51,6 +51,7 @@ export class SignupComponent implements OnInit {
       website:'',
       address:'',
       representative:'',
+      uploadedFiles:[],
     });
     this.layoutComponent.showBackgroundEffects = false;
     this.signatoryform = this.builder.group({
@@ -68,6 +69,25 @@ export class SignupComponent implements OnInit {
     
     const savedMyFormData = this.formDataService.getFormData('myform');
     const savedSignatoryFormData = this.formDataService.getFormData('signatoryform');
+    const uploadedFilesData = this.formDataService.getFileData('uploadedFiles');
+    const companyLicenseFilesData = this.formDataService.getFileData('companyLicenseFiles');
+    const signatoryProfileFilesData = this.formDataService.getFileData('signatoryProfileFiles');
+    const otherFilesData = this.formDataService.getFileData('otherFiles');
+    if (uploadedFilesData) {
+      this.uploadedFiles = uploadedFilesData;
+    }
+    
+    if (companyLicenseFilesData) {
+      this.companyLicenseFiles = companyLicenseFilesData;
+    }
+    
+    if (signatoryProfileFilesData) {
+      this.signatoryProfileFiles = signatoryProfileFilesData;
+    }
+    
+    if (otherFilesData) {
+      this.otherFiles = otherFilesData;
+    }
     if (savedMyFormData && savedSignatoryFormData) {
       this.myform.patchValue(savedMyFormData.value);
       this.signatoryform.patchValue(savedSignatoryFormData.value);
@@ -93,6 +113,11 @@ export class SignupComponent implements OnInit {
   saveFormData() {
     this.formDataService.setFormData('myform', this.myform);
     this.formDataService.setFormData('signatoryform', this.signatoryform);
+    this.formDataService.setFileData('uploadedFiles', this.uploadedFiles);
+    this.formDataService.setFileData('companyLicenseFiles', this.companyLicenseFiles);
+    this.formDataService.setFileData('signatoryProfileFiles', this.signatoryProfileFiles);
+    this.formDataService.setFileData('otherFiles', this.otherFiles);
+
   }
 
   showUploadPopup() {
