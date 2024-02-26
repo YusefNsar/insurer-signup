@@ -10,10 +10,6 @@
 <body>
 
   <div class="formcontainer">
-    <!-- <div class="header-logo">
-            <img src="../../../../assets/header-logo1.png" class="header-logo1">
-        </div> -->
-        
     <div class="logo">
       <img src="../../../../assets/RasAlkhaimah-courts.png" class="logo">
     </div>
@@ -75,7 +71,7 @@
           <span class="error-message" *ngIf="myform.get('cbuaeExpiry')?.errors?.['required']">CBUAE expiry date is required.</span>
         </div>
       </div>
-     
+
       <div class="form-group">
         <label for="commercial-license">Commercial License Number *</label>
         <input type="text" id="commercial-license" name="commercial-license"
@@ -193,17 +189,17 @@
           </div>
           <button class="new-document-button" (click)="tablePicker('others')">New Document</button>
         </div>
-        
+
         <div *ngIf="isUploadPopupVisible" class="upload-popup">
-        
+
           <div class="upload-popup-content">
             <span class="close" (click)="closeUploadPopup()">&times;</span>
             <h2 class="upload-popup-title">Upload documents</h2>
             <div class="upload-popup-header" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
               (drop)="onDrop($event)">
-              
+
               <div type="file" (change)="handleFileInput($event)" multiple>
-                
+
                 <div class="upload-popup-header-content">
                   <img src="../../../../assets/upload-logo.png" alt="upload Icon">
                   <h2>Drag and Drop Files Here</h2>
@@ -228,8 +224,8 @@
                 <button class="clearbutton"(click)="clearFiles(table)">Clear</button>
             </div>
         </div>
-          
-          
+
+
 
         </div>
       </div>
@@ -243,11 +239,11 @@
     </div>
 
     <div class="form-group button-container">
-        <button type="submit" [disabled]="myform.invalid || !isChecked || signatoryform.invalid" (click)="submit()" 
+        <button type="submit" [disabled]="myform.invalid || !isChecked || signatoryform.invalid" (click)="submit()"
         [style.background-color]="(myform.invalid || !isChecked || signatoryform.invalid) ? '#ccc' : '#0e2d4a'"
         [style.color]="(myform.invalid || !isChecked || signatoryform.invalid) ? '#0e2d4a' : '#fff'"
         [style.cursor]="(myform.invalid || !isChecked || signatoryform.invalid) ? 'not-allowed' : 'pointer'">Submit</button>
-      
+
     </div>
 
 

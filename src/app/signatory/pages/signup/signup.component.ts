@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { LayoutComponent } from '../../../shared/layout/layout.component';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class SignupComponent implements OnInit {
     private apiService: ApiService,
     private toastr: ToastrService,
     private el: ElementRef,
-    private router: Router
+    private router: Router,
+    private layoutComponent:LayoutComponent
   ) {
     this.myform = this.builder.group({
       cname: ['', Validators.required],
@@ -50,7 +52,7 @@ export class SignupComponent implements OnInit {
       address:'',
       representative:'',
     });
-
+    this.layoutComponent.showBackgroundEffects = false;
     this.signatoryform = this.builder.group({
       companyname: ['', Validators.required],
       mNumber:['', Validators.pattern('^[0-9]*$')],
@@ -63,6 +65,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     const savedMyFormData = this.formDataService.getFormData('myform');
     const savedSignatoryFormData = this.formDataService.getFormData('signatoryform');
     if (savedMyFormData && savedSignatoryFormData) {
@@ -85,11 +88,11 @@ export class SignupComponent implements OnInit {
     });
     console.log('Form Data:', { cname: this.myform.get(['cname'])?.value });
   }
-  
+
 
   saveFormData() {
     this.formDataService.setFormData('myform', this.myform);
-    this.formDataService.setFormData('signatoryform', this.signatoryform); 
+    this.formDataService.setFormData('signatoryform', this.signatoryform);
   }
 
   showUploadPopup() {
@@ -115,14 +118,14 @@ export class SignupComponent implements OnInit {
   private processFiles(files: FileList) {
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-  
+
       if (file.type === 'application/pdf') {
         // Process PDF file
         const reader = new FileReader();
         reader.onload = () => {
           const base64String = reader.result?.toString() || '';
           this.uploadedFiles.push({ name: file.name, base64: base64String });
-  
+
           if (this.table === 'companyLicense') {
             this.companyLicenseFiles.push({ name: file.name, base64: base64String });
           } else if (this.table === 'signatoryProfile') {
@@ -131,10 +134,10 @@ export class SignupComponent implements OnInit {
             this.otherFiles.push({ name: file.name, base64: base64String });
           }
         };
-  
+
         reader.readAsDataURL(file);
       } else {
-  
+
         this.onFailure("Invalid file format","Please submit your files in a PDF format");
 
         console.log(`${file.name} is not a PDF. Ignoring.`);
@@ -173,11 +176,11 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  
+
   removeFile(file: any ) {
     const fileName:string=file.name;
     const index = this.uploadedFiles.indexOf(file);
-    
+
     if (index !== -1) {
         this.uploadedFiles.splice(index, 1);
     }
@@ -193,7 +196,7 @@ export class SignupComponent implements OnInit {
     {
       this.otherFiles = this.otherFiles.filter(file => file.name !== fileName);
     }
-    
+
 }
 getTableArray(): any[] {
   if (this.table === 'companyLicense') {
@@ -233,11 +236,9 @@ getTableArray(): any[] {
     const cbuaeExpiryValue = new Date(this.myform.get('cbuaeExpiry')?.value);
     const comercialExpiryValue = new Date(this.myform.get('commercialLicenseExpiry')?.value);
 
-
-
     const cbuaeUTCDate = cbuaeExpiryValue.toISOString();
     const comercialUTCDate = comercialExpiryValue.toISOString();
-    
+
     return {
       companyName: formData.cname,
       name: signatoryFormData.representativename,
@@ -261,7 +262,7 @@ getTableArray(): any[] {
     const formData = this.myform.value;
     const signatoryFormData = this.signatoryform.value;
     const uploadedFiles = this.uploadedFiles.map(file => file.base64.split(',')[1]);
-  
+
     // Transform form data to match the API payload
     const apiRequestBody = this.mapToApiRequestBody(formData, signatoryFormData, uploadedFiles);
     this.apiService.submitFormData(apiRequestBody)
@@ -275,7 +276,7 @@ getTableArray(): any[] {
     }
 
       setTimeout(() => {
-        this.router.navigate(['/insurer/login']); 
+        this.router.navigate(['/insurer/login']);
       }, 3500);
       },
       error => {
@@ -294,7 +295,7 @@ getTableArray(): any[] {
       }
     );
   }
-  
+
   onSuccess(title: string, body: string) {
     this.toastr.success(body, title, {
       progressBar: true,
@@ -304,7 +305,7 @@ getTableArray(): any[] {
       easeTime: 350,
     });
   }
-  
+
   onFailure(title: string, body: string) {
     this.toastr.error(body, title, {
       progressBar: true,
@@ -314,7 +315,7 @@ getTableArray(): any[] {
       easeTime: 350,
     });
   }
-  
+
   getErrorMessage(status: number): string {
     switch (status) {
       case 404:
@@ -329,6 +330,6 @@ getTableArray(): any[] {
         return 'Unknown error';
     }
   }
-  
-  
+
+
 }

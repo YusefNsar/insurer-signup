@@ -16,7 +16,7 @@ import { config } from './shared/config'
 })
 export class AppComponent {
   title = 'insurer-sign-up'
-
+  showBackgroundEffects: boolean = true;
   constructor(
     private http: HttpClient,
     private auth: AuthService,

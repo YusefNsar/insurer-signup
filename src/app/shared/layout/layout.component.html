@@ -8,7 +8,7 @@
     <ng-content></ng-content>
   </div>
 
-  <div class="background-effects">
+  <div *ngIf="this.showBackgroundEffects" class="background-effects">
     <div class="eclipse eclipse-1"></div>
     <div class="eclipse eclipse-2"></div>
 
