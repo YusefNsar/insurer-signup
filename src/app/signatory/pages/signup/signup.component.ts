@@ -141,34 +141,45 @@ export class SignupComponent implements OnInit {
 
 
   private processFiles(files: FileList) {
+    const allowedFileTypes = ['application/pdf', 'application/msword', 'image/jpeg'];
+    const maxFileSize = 5 * 1024 * 1024; // 5 MB
+  
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-
-      if (file.type === 'application/pdf') {
-        // Process PDF file
-        const reader = new FileReader();
-        reader.onload = () => {
-          const base64String = reader.result?.toString() || '';
-          this.uploadedFiles.push({ name: file.name, base64: base64String });
-
-          if (this.table === 'companyLicense') {
-            this.companyLicenseFiles.push({ name: file.name, base64: base64String });
-          } else if (this.table === 'signatoryProfile') {
-            this.signatoryProfileFiles.push({ name: file.name, base64: base64String });
-          } else if (this.table === 'others') {
-            this.otherFiles.push({ name: file.name, base64: base64String });
-          }
-        };
-
-        reader.readAsDataURL(file);
+  
+      // Check file type
+      if (allowedFileTypes.includes(file.type)) {
+        // Check file size
+        if (file.size <= maxFileSize) {
+          const reader = new FileReader();
+  
+          reader.onload = () => {
+            const base64String = reader.result?.toString() || '';
+  
+            // Process the file based on the table
+            this.uploadedFiles.push({ name: file.name, base64: base64String });
+  
+            if (this.table === 'companyLicense') {
+              this.companyLicenseFiles.push({ name: file.name, base64: base64String });
+            } else if (this.table === 'signatoryProfile') {
+              this.signatoryProfileFiles.push({ name: file.name, base64: base64String });
+            } else if (this.table === 'others') {
+              this.otherFiles.push({ name: file.name, base64: base64String });
+            }
+          };
+  
+          reader.readAsDataURL(file);
+        } else {
+          this.onFailure("File Too Large", "Please ensure your file is less than 5 MB");
+          console.log(`${file.name} is too large. Ignoring.`);
+        }
       } else {
-
-        this.onFailure("Invalid file format","Please submit your files in a PDF format");
-
-        console.log(`${file.name} is not a PDF. Ignoring.`);
+        this.onFailure("Invalid File Format", "Please submit your files in PDF, Word, or JPEG format");
+        console.log(`${file.name} is not a supported file format. Ignoring.`);
       }
     }
   }
+  
 
   clearFiles(list: string) {
     if (list==='all')
