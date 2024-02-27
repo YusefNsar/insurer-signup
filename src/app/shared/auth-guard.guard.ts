@@ -1,39 +1,38 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree, ActivatedRouteSnapshot  } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { inject } from '@angular/core'
+import { Router, CanActivateFn } from '@angular/router'
+import { AuthService } from '@auth0/auth0-angular'
+import { map } from 'rxjs/operators'
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) { }
+export const AuthGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService)
+  const router = inject(Router)
 
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
-    return this.authService.user$.pipe(
+  return authService.user$.pipe(
+    map(user => {
+      console.log(
+        !!user,
+        user?.sub?.split('|')[0] === 'waad',
+        route.routeConfig?.path,
+      )
+      //* admin users' sub id will begin with 'waad'
+      if (
+        user &&
+        user.sub?.split('|')[0] === 'waad' &&
+        route.routeConfig?.path !== 'back-office'
+      ) {
+        // return router.createUrlTree(['/back-office'])
+      }
 
-      map((user) => {
-       
-        // Check if the user is an admin (sub id begins with 'waad')
-        if (user && user.sub?.split('|')[0] === 'waad') {
-         
-          return this.router.createUrlTree(['/back-office']);
-        }
+      if (user && route.routeConfig?.path !== 'profile') {
+        return router.createUrlTree(['/insurer/profile'])
+      }
 
-        // Check if the user is authenticated
-        else if (user) {
-          if (route.routeConfig?.path === 'profile') {
-            return true; // Allow access to the 'profile' route without redirection
-          }
-          return this.router.createUrlTree(['/insurer/profile']);
+      if (!user && route.routeConfig?.path !== 'login') {
+        return router.createUrlTree(['/insurer/login'])
+      }
 
-        }
-        // Redirect to the default route if not authenticated
-        else {
-          return this.router.createUrlTree(['/insurer/login']);
-        }
-      })
-    );
-  }
+      // don't redirect
+      return true
+    }),
+  )
 }
