@@ -20,7 +20,7 @@ export const routes: Routes = [
   {
     path: 'back-office',
     loadChildren: backOfficeModule,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '/insurer' },
 ]

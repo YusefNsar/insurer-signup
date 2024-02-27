@@ -35,6 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.loginWithRedirect()
+    this.auth.loginWithPopup()
   }
 }
