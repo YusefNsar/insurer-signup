@@ -1,5 +1,5 @@
+import { CompanyForms as Signatory } from './../../../back-office/registered-forms.service'
 import { Component, Input } from '@angular/core'
-import { Signatory } from '../../pages/profile/profile.component'
 
 @Component({
   selector: 'app-profile-details',
