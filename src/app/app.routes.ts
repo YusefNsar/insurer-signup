@@ -11,8 +11,16 @@ const signatoryModule = () =>
   )
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/registered-forms', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: '/insurer',
+    pathMatch: 'full',
+  },
   { path: 'insurer', loadChildren: signatoryModule },
-  { path: 'back-office', loadChildren: backOfficeModule },
+  {
+    path: 'back-office',
+    loadChildren: backOfficeModule,
+    // canActivate: [AuthGuard],
+  },
   { path: '**', redirectTo: '/insurer' },
 ]

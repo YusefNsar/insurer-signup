@@ -16,7 +16,7 @@ import { config } from './shared/config'
 })
 export class AppComponent {
   title = 'insurer-sign-up'
-  showBackgroundEffects: boolean = true;
+  showBackgroundEffects: boolean = true
   constructor(
     private http: HttpClient,
     private auth: AuthService,
@@ -24,12 +24,5 @@ export class AppComponent {
 
   ngOnInit() {
     this.auth.error$.subscribe(err => console.error(err))
-    this.auth.isAuthenticated$.subscribe(status => {
-      if (status) {
-        this.http.get(`${config.signatoryApi}/`).subscribe(reply => {
-          console.log(reply)
-        })
-      }
-    })
   }
 }

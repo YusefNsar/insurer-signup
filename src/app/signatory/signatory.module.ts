@@ -27,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr'
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     RouterModule.forChild([
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'forgot', component: ForgotComponent },

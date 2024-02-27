@@ -47,25 +47,25 @@ export class RegisteredFormsService {
   constructor(private http: HttpClient) {}
 
   updateFormStatus(formId: string, newStatus: string): Observable<boolean> {
-    this.loading = true;
-    const apiUrl = `${config.signatoryApi}/${formId}/status/${newStatus}`;
-  
+    this.loading = true
+    const apiUrl = `${config.signatoryApi}/${formId}/status/${newStatus}`
+
     return this.http.put(apiUrl, {}).pipe(
       map(() => {
-        const formToUpdate = this.companyForms.find(f => f.id === formId);
-  
+        const formToUpdate = this.companyForms.find(f => f.id === formId)
+
         if (formToUpdate) {
-          formToUpdate.status = newStatus;
+          formToUpdate.status = newStatus
         }
-  
-        this.loading = false;
-        return true;
+
+        this.loading = false
+        return true
       }),
       catchError(() => {
-        this.loading = false;
-        return of(false);
-      })
-    );
+        this.loading = false
+        return of(false)
+      }),
+    )
   }
 
   getAllForms() {

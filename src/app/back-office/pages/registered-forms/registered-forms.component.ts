@@ -32,26 +32,23 @@ export class RegisteredFormsComponent implements OnInit {
   }
 
   updateStatusFilter(option: string | null) {
-    this.activeStatus = option;
+    this.activeStatus = option
     this.data = this.rf.filterForms({
       companyName: this.activeCompanyName,
       status: this.activeStatus,
-    });
-    
-    this.companyNameFiltersOptions = this.data.map(d => d.companyName);
+    })
+
+    this.companyNameFiltersOptions = this.data.map(d => d.companyName)
   }
-  updateStatus(formIdToUpdate : string , option : string)
-  {
-    this.activeStatus = option;
-    this.rf.updateFormStatus(formIdToUpdate, option).subscribe(
-      success => {
-        if (success) {
-          console.log('Form status updated successfully');
-        } else {
-          console.error('Failed to update form status');
-        }
+  updateStatus(formIdToUpdate: string, option: string) {
+    this.activeStatus = option
+    this.rf.updateFormStatus(formIdToUpdate, option).subscribe(success => {
+      if (success) {
+        console.log('Form status updated successfully')
+      } else {
+        console.error('Failed to update form status')
       }
-    );
+    })
   }
   // company name filter
   companyNameFiltersOptions = this.data.map(d => d.companyName)
