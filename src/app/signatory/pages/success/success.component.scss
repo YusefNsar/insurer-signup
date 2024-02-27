@@ -1,0 +1,49 @@
+@import '../../../../styles.scss';
+@import '../../../shared/styles/form-input.scss';
+
+
+.shape {
+    border-radius: $border-radius;
+    position: relative;
+    padding-left: 0;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 23vw;
+    max-width: 36vw;
+    min-height: 260.17px;
+    margin-bottom: 50px;
+    background: linear-gradient(180deg, #f8f8fc, #ffffff00 40%),
+      linear-gradient(90deg, #4a55bc20 4.13%, #4a55bc0c 80.29%);
+    border: 1.4px solid #ffffff;
+    border-radius: 1.5em;
+    box-shadow: 0px 70px 40px 0px #4a55bc23;
+   
+  }
+
+img {
+    font-size: 12px;
+    margin-top: 3.7em;
+    margin-bottom: 1em;
+    width: 3.5em;
+}
+
+.content {
+    text-align: center; /* Center-align the content within the container */
+}
+
+.main-text {
+    margin: 8px;
+    font-weight: bold;
+    font-size: 19px;
+    color: $primary-color;
+
+}
+
+.sub-text {
+    font-size: 14px;
+    color: $primary-color;
+    margin-top: 1em;
+    margin-bottom: 1.2em;
+}

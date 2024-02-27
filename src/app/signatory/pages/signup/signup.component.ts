@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
   table:string='';
   isChecked:boolean=false;
   checkboxState: boolean = false;
+  loading:boolean = false;
   myform: FormGroup;
   signatoryform:FormGroup;
 
@@ -48,7 +49,7 @@ export class SignupComponent implements OnInit {
       commercialLicense: ['', Validators.required],
       commercialLicenseExpiry: ['', Validators.required],
       agree: [false, Validators.requiredTrue],
-      website:'',
+      website:['',this.isValidUrl],
       address:'',
       representative:'',
       uploadedFiles:[],
@@ -118,6 +119,15 @@ export class SignupComponent implements OnInit {
     this.formDataService.setFileData('signatoryProfileFiles', this.signatoryProfileFiles);
     this.formDataService.setFileData('otherFiles', this.otherFiles);
 
+  }
+
+  isValidUrl(control: any) {
+    if (!control.value) return null; // if no value, don't validate
+    if (/^(ftp|http|https):\/\/[^ "]+$/.test(control.value)) {
+      return null; // valid URL
+    } else {
+      return { 'invalidUrl': true }; // invalid URL
+    }
   }
 
   showUploadPopup() {
@@ -298,22 +308,20 @@ getTableArray(): any[] {
     const formData = this.myform.value;
     const signatoryFormData = this.signatoryform.value;
     const uploadedFiles = this.uploadedFiles.map(file => file.base64.split(',')[1]);
-
+    this.loading = true;
     // Transform form data to match the API payload
     const apiRequestBody = this.mapToApiRequestBody(formData, signatoryFormData, uploadedFiles);
+    const submitButton = this.el.nativeElement.querySelector('button[type="submit"]');
+        if (submitButton) {
+          submitButton.disabled = true;
+        }
     this.apiService.submitFormData(apiRequestBody)
     .subscribe(
       () => {
         // If you're here, it means there was a successful response with an empty body
-        this.onSuccess('Successful submission!', 'Now routing you to login page');
-        const submitButton = this.el.nativeElement.querySelector('button[type="submit"]');
-    if (submitButton) {
-      submitButton.disabled = true;
-    }
-
-      setTimeout(() => {
-        this.router.navigate(['/insurer/login']);
-      }, 3500);
+        this.onSuccess('Success', 'Form submitted successfully!');
+        this.router.navigate(['/insurer/success']);
+        this.loading = false;
       },
       error => {
         if (error.status) {
@@ -321,12 +329,17 @@ getTableArray(): any[] {
           if (error.status >= 200 && error.status < 300) {
             // Treat as success if status is in the success range
             this.onSuccess('Success', 'Form submitted successfully!');
+            this.router.navigate(['/insurer/success']);
           } else {
             // Treat as failure
             this.onFailure('Error', this.getErrorMessage(error.status));
           }
         } else {
         this.onFailure('Failed to submit form.', ' User already exists.');
+        }
+        this.loading = false;
+        if (submitButton) {
+          submitButton.disabled = false;
         }
       }
     );

@@ -42,6 +42,9 @@
       <div class="form-group">
         <label for="website" >Official Website</label>
         <input type="text" id="website" name="website" placeholder="Enter official website URL" formControlName="website">
+        <div *ngIf="myform.get('website')?.hasError('invalidUrl') && myform.get('website')?.dirty">
+          <span class="error-message">Invalid URL format</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="address" >Registered Address</label>
@@ -239,10 +242,13 @@
     </div>
 
     <div class="form-group button-container">
-        <button type="submit" [disabled]="myform.invalid || !isChecked || signatoryform.invalid" (click)="submit()"
-        [style.background-color]="(myform.invalid || !isChecked || signatoryform.invalid) ? '#ccc' : '#0e2d4a'"
-        [style.color]="(myform.invalid || !isChecked || signatoryform.invalid) ? '#0e2d4a' : '#fff'"
-        [style.cursor]="(myform.invalid || !isChecked || signatoryform.invalid) ? 'not-allowed' : 'pointer'">Submit</button>
+      <button type="submit" [disabled]="myform.invalid || !isChecked || signatoryform.invalid || loading" 
+      (click)="submit()"
+      [style.background-color]="(myform.invalid || !isChecked || signatoryform.invalid || loading) ? '#ccc' : '#0e2d4a'"
+      [style.color]="(myform.invalid || !isChecked || signatoryform.invalid || loading) ? '#0e2d4a' : '#fff'"
+      [style.cursor]="(myform.invalid || !isChecked || signatoryform.invalid || loading) ? 'not-allowed' : 'pointer'">
+      {{ loading ? 'Submitting...' : 'Submit' }}
+    </button>
 
     </div>
 

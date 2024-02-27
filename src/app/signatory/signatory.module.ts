@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router'
 import { LoginComponent } from './pages/login/login.component'
 import { ProfileComponent } from './pages/profile/profile.component'
 import { SignupComponent } from './pages/signup/signup.component'
+import { SuccessComponent } from './pages/success/success.component'
 import { ForgotComponent } from './pages/forgot/forgot.component'
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component'
 import { ChangePasswordComponent } from './components/change-password/change-password.component'
@@ -20,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr'
     ForgotComponent,
     ProfileDetailsComponent,
     ChangePasswordComponent,
+    SuccessComponent,
   ],
   imports: [
     CommonModule,
@@ -31,13 +33,14 @@ import { ToastrModule } from 'ngx-toastr'
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'forgot', component: ForgotComponent },
+      { path: 'success', component: SuccessComponent},
       { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
       {
         path: 'profile',
         component: ProfileComponent,
         canActivate: [AuthGuard],
       },
-      { path: '**', redirectTo: 'login' },
+      { path: '**', redirectTo: 'login' }
     ]),
   ],
 })
