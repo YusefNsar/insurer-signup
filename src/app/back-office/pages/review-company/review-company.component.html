@@ -40,7 +40,21 @@
 
   <!-- Accept / Reject -->
   <div class="buttons-stack">
-    <button class="accept button" [disabled]="this.company.status.toLowerCase() !== 'pending' "(click)="updateStatus('accepted')">Accept</button>
-    <button class="reject button" [disabled]="this.company.status.toLowerCase() !== 'pending' "(click)="updateStatus('rejected')">Reject</button>
+    <button
+      class="accept button"
+      [disabled]="this.company.status.toLowerCase() !== 'pending'"
+      (click)="updateStatus('accepted')"
+    >
+      Accept
+    </button>
+    <button
+      class="reject button"
+      [disabled]="this.company.status.toLowerCase() !== 'pending'"
+      (click)="updateStatus('rejected')"
+    >
+      Reject
+    </button>
   </div>
+
+  <app-logout />
 </div>

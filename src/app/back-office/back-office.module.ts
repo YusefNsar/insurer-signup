@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { AdminLoginComponent } from './pages/admin-login/admin-login.component'
 import { RegisteredFormsComponent } from './pages/registered-forms/registered-forms.component'
 import { RouterModule } from '@angular/router'
 import { ReviewCompanyComponent } from './pages/review-company/review-company.component'
 import { CardComponent } from '../shared/card/card.component'
 import { DocumentComponent } from '../shared/document/document.component'
 import { DropdownRadioComponent } from '../shared/dropdown-radio/dropdown-radio.component'
+import { LogoutComponent } from './components/logout/logout.component'
 
 @NgModule({
   declarations: [
-    AdminLoginComponent,
     RegisteredFormsComponent,
     ReviewCompanyComponent,
+    LogoutComponent,
   ],
   imports: [
     CommonModule,
