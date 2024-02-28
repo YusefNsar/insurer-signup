@@ -67,7 +67,6 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     const savedMyFormData = this.formDataService.getFormData('myform');
     const savedSignatoryFormData = this.formDataService.getFormData('signatoryform');
     const uploadedFilesData = this.formDataService.getFileData('uploadedFiles');
@@ -107,7 +106,6 @@ export class SignupComponent implements OnInit {
       this.myform.get('agree')?.setValue(state);
       this.isChecked=state;
     });
-    console.log('Form Data:', { cname: this.myform.get(['cname'])?.value });
   }
 
 
@@ -151,8 +149,9 @@ export class SignupComponent implements OnInit {
 
 
   private processFiles(files: FileList) {
-    const allowedFileTypes = ['application/pdf', 'application/msword', 'image/jpeg'];
+    const allowedFileTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg'];
     const maxFileSize = 5 * 1024 * 1024; // 5 MB
+  
   
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
@@ -165,6 +164,7 @@ export class SignupComponent implements OnInit {
   
           reader.onload = () => {
             const base64String = reader.result?.toString() || '';
+            console.log(base64String)
   
             // Process the file based on the table
             this.uploadedFiles.push({ name: file.name, base64: base64String });
