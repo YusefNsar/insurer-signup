@@ -24,6 +24,20 @@
   text-align: left;
 }
 
+.profile-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .company {
   display: flex;
   align-items: center;

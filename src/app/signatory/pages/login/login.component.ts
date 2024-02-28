@@ -15,23 +15,14 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(user => {
-      //* admin users' sub id will begin with 'waad'
-      if (user && user.sub?.split('|')[0] === 'waad') {
-        this.router.navigate(['/back-office'])
-      } else if (user) {
-        this.router.navigate(['/insurer/profile'])
-      } else {
-        this.router.navigate(['/insurer/login'])
-      }
-    })
+    // login-helpers
     // this.auth.idTokenClaims$.subscribe(user => console.log('claims', user))
     // this.auth.user$.subscribe(user => console.log('user', user))
     // this.auth.appState$.subscribe(s => console.log('state', s))
     // this.auth.isAuthenticated$.subscribe(isAuthenticated =>
     //   isAuthenticated ? this.router.navigate(['/back-office']) : false,
     // )
-    this.auth.getAccessTokenSilently({}).subscribe(token => console.log(token))
+    // this.auth.getAccessTokenSilently({}).subscribe(token => console.log(token))
   }
 
   login() {

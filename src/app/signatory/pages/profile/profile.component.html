@@ -3,7 +3,7 @@
   <div class="sidebar">
     <div class="company">
       <img src="/assets/company.png" alt="company-logo" />
-      <p>{{ profile.company.name }}</p>
+      <p>{{ profile?.companyName || '' }}</p>
     </div>
 
     <div class="menu">
@@ -19,10 +19,68 @@
 
   <!-- Sub Page -->
   <div class="subpage">
+    <!-- User Profile -->
+    <div
+      *ngIf="activeItem === 'profile' && !profile && isLoading"
+      class="profile-loading"
+    >
+      Loading...
+    </div>
+    <div
+      *ngIf="activeItem === 'profile' && !profile && !isLoading"
+      class="profile-error"
+    >
+      Something went wrong!
+    </div>
     <app-profile-details
-      *ngIf="activeItem === menuItems[0].value"
-      [signatory]="profile.signatory"
+      *ngIf="activeItem === 'profile' && !!profile"
+      [signatory]="profile"
     />
-    <app-change-password *ngIf="activeItem === menuItems[1].value" />
+
+    <!-- Change Password -->
+    <!-- <app-change-password *ngIf="activeItem === menuItems[1].value" /> -->
+
+    <!-- Terms & Conditions -->
+    <div class="terms-conditions" *ngIf="activeItem === 'T&C'">
+      <div class="form-header">Terms & Conditions</div>
+      <p>
+        1. To use the Recovery Platform only for the purposes defined in the
+        Terms and Conditions for the use of the Recovery Platform.
+      </p>
+      <p>
+        2. We have reviewed, comprehended, and unreservedly accepted the terms
+        and conditions specified at [insert the link to the detailed Terms and
+        Conditions], including any amendments thereto (hereinafter referred to
+        as "Terms and Conditions"). This acknowledgment includes a thorough
+        understanding of the rights, obligations, and liabilities outlined in
+        the Terms and Conditions, thereby affirming the Company's commitment to
+        use the Recovery Platform for the defined purpose
+      </p>
+
+      <p>
+        3. To strictly adhere to and comply with all the stipulations and
+        requirements delineated in the Terms and Conditions. This commitment
+        extends to compliance with all relevant laws, regulations, and industry
+        standards applicable to the operation and utilization of the Recovery
+        Platform, ensuring a transparent and lawful engagement with the Recovery
+        Platform.
+      </p>
+
+      <p>
+        4. Confirm that this Signup Form is endorsed by a duly authorized
+        representative of the Company, vested with full authority to represent
+        and legally bind the Company to the Terms and Conditions The Company
+        undertakes to promptly notify the Electronic Government Authority, Ras
+        Al Khaimah, of any changes in the representative's authorization or any
+        other pertinent information that may impact the validity or
+        enforceability of this Undertaking.
+      </p>
+
+      <p class="last-child">
+        This Undertaking along with the Terms and Condition is a legally binding
+        contract, and any breach of the terms may result in legal consequences
+        as stipulated in the Terms and Conditions.
+      </p>
+    </div>
   </div>
 </div>

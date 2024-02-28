@@ -8,10 +8,11 @@ import { SuccessComponent } from './pages/success/success.component'
 import { ForgotComponent } from './pages/forgot/forgot.component'
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component'
 import { ChangePasswordComponent } from './components/change-password/change-password.component'
-import { AuthGuard } from '../shared/auth-guard.guard'
+import { AuthGuard } from '../shared/guards/auth.guard'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component'
 import { ToastrModule } from 'ngx-toastr'
+import { SignatoryGuard } from '../shared/guards/signatory.guard'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ToastrModule } from 'ngx-toastr'
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     RouterModule.forChild([
-      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'forgot', component: ForgotComponent },
@@ -38,7 +39,7 @@ import { ToastrModule } from 'ngx-toastr'
       {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, SignatoryGuard],
       },
       { path: '**', redirectTo: 'login' }
     ]),

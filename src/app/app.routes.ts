@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router'
-import { AuthGuard } from './shared/auth-guard.guard'
+import { AuthGuard } from './shared/guards/auth.guard'
+import { AdminGuard } from './shared/guards/admin.guard'
 
 const backOfficeModule = () =>
   import('./back-office/back-office.module').then(
@@ -20,7 +21,7 @@ export const routes: Routes = [
   {
     path: 'back-office',
     loadChildren: backOfficeModule,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   { path: '**', redirectTo: '/insurer' },
 ]
